@@ -1,0 +1,368 @@
+openapi: 3.0.3
+info:
+  title: Projeto Ecoleta
+  description: |-
+   API destinada a gerenciar o sistema Ecoleta
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: leandrodosreisfilho@email.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.4.26
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+servers:
+  - url: http://
+tags:
+  - name: Estabelecimento
+  - name: Coletora
+  - name: Residuo
+  - name: Coleta
+  - name: Endereco
+  - name: Email
+  - name: Telefone
+  - name: Autenticacao
+  - name: 
+paths:
+  /v1/senai/locadora/filme:
+    post:
+      tags:
+        - Filme
+      summary: Adiciona um novo filme
+      description: Endpoint para enviar os dados do filme a serem cadastrados
+      requestBody:
+        description: JSON contendo os dados do novo filme a ser inserido no sistema
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Filme'
+        required: true
+      responses:
+        '201':
+          description: Successful operation
+        '400':
+          description: Invalid input
+        '415':
+          description: Error Content-type
+        '500':
+          description: Error Internal Server
+    get:
+      tags:
+        - Filme
+      summary: Lista todos os Filmes
+      description: Listagem de todos os Filmes registrados no sistema
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Filme'
+        '404':
+          description: Not Found
+        '500':
+          description: Error Internal Server
+  /v1/senai/locadora/filme/{id}:
+    get:
+      tags:
+        - Filme
+      summary: Busca um Filme pelo ID
+      description: Retorna um Filme pelo ID
+      parameters:
+        - name: id
+          in: path
+          description: ID para realizar a busca do filme
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Filme'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Not found
+        '500':
+          description: Error Internal Server
+    put:
+      tags:
+        - Filme
+      summary: Atualizar um filme pelo ID
+      description: Buscar e atualizar um filme pelo ID
+      parameters:
+        - name: id
+          in: path
+          description: ID para realizar a busca do Filme
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Dados para atualizar um filme
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Filme'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Not found
+        '415':
+          description: Invalid Content-Type
+        '500':
+          description: Error Internal Server
+    delete:
+      tags:
+        - Filme
+      summary: Excluir um filme pelo ID
+      description: Buscar e excluir um filme pelo ID
+      parameters:
+        - name: id
+          in: path
+          description: ID para buscar o filme
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Not found
+        '500':
+          description: Error Internal Server
+
+  /v1/senai/locadora/classificacao:
+    post:
+      tags:
+        - Classificacao
+      summary: Adiciona uma nova classificação
+      description: Endpoint para enviar os dados da classificação a serem cadastrados
+      requestBody:
+        description: JSON contendo os dados da nova classificação a ser inserida no sistema
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Classificacao'
+        required: true
+      responses:
+        '201':
+          description: Successful operation
+        '400':
+          description: Invalid input
+        '415':
+          description: Error Content-type
+        '500':
+          description: Error Internal Server
+    get:
+      tags:
+        - Classificacao
+      summary: Lista todas as Classificações
+      description: Listagem de todas as Classificações registradas no sistema
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Classificacao'
+        '404':
+          description: Not Found
+        '500':
+          description: Error Internal Server
+  /v1/senai/locadora/classificacao/{id}:
+    get:
+      tags:
+        - Classificacao
+      summary: Busca uma Classificação pelo ID
+      description: Retorna uma Classificação pelo ID
+      parameters:
+        - name: id
+          in: path
+          description: ID para realizar a busca da classificação
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Classificacao'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Not found
+        '500':
+          description: Error Internal Server
+    put:
+      tags:
+        - Classificacao
+      summary: Atualizar uma classificação pelo ID
+      description: Buscar e atualizar uma classificação pelo ID
+      parameters:
+        - name: id
+          in: path
+          description: ID para realizar a busca da Classificação
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Dados para atualizar uma classificação
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Classificacao'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Not found
+        '415':
+          description: Invalid Content-Type
+        '500':
+          description: Error Internal Server
+    delete:
+      tags:
+        - Classificacao
+      summary: Excluir uma classificação pelo ID
+      description: Buscar e excluir uma classificação pelo ID
+      parameters:
+        - name: id
+          in: path
+          description: ID para buscar a classificação
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Not found
+        '500':
+          description: Error Internal Server
+
+components:
+  schemas:
+    Filme:
+      required:
+        - nome
+        - sinopse
+        - capa
+        - data_lancamento
+        - duracao
+        - valor
+        - avaliacao
+        - id_classificacao
+        - genero
+      type: object
+      properties:
+        id:
+          type: integer
+        nome:
+          type: string
+          maxLength: 80
+        sinopse:
+          type: string
+        data_lancamento:
+          type: string
+          format: date
+          example: "2026-01-01"
+        duracao:
+          type: string
+          minLength: 5
+          example: "02:15"
+        capa:
+          type: string
+          maxLength: 255
+        valor:
+          type: number
+        avaliacao:
+          type: number
+        id_classificacao:
+          type: integer
+          description: ID da classificação indicativa relacionada ao filme
+        classificacao:
+          $ref: '#/components/schemas/Classificacao'
+          description: Retornado nas consultas (GET) no lugar de id_classificacao
+        genero:
+          type: array
+          description: Lista de gêneros relacionados ao filme
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+
+    Classificacao:
+      required:
+        - sigla
+        - nome
+        - descricao
+      type: object
+      properties:
+        id:
+          type: integer
+        sigla:
+          type: string
+          maxLength: 5
+          example: "L"
+        nome:
+          type: string
+          maxLength: 45
+        descricao:
+          type: string
+          maxLength: 200
+
+    Cargo:
+      required:
+        - funcao
+      type: object
+      properties:
+        id:
+          type: integer
+        funcao:
+          type: string
+          maxLength: 30
+          example: "Diretor"
+
+
+  requestBodies:
+    Filme:
+      description: Objeto que deve ser enviado no Body das requisições
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Filme'
+    Classificacao:
+      description: Objeto que deve ser enviado no Body das requisições
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Classificacao'
